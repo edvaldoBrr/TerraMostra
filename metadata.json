@@ -1,0 +1,6 @@
+{
+  "name": "TerraAdapt NASA - Rotação de Culturas Resiliente",
+  "description": "Ferramenta de apoio à decisão para agricultores adaptarem suas fazendas com observações da Terra da NASA (SMAP, GPM, ECOSTRESS, MODIS, POWER), regenerando o solo e enfrentando extremos climáticos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
