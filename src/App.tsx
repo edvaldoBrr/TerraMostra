@@ -34,7 +34,6 @@ import { GeminiAdvisorDrawer } from './components/GeminiAdvisorDrawer';
 import { PrintableReportModal } from './components/PrintableReportModal';
 import { GlobalRegionModal } from './components/GlobalRegionModal';
 import { NasaGlobe3D } from './components/NasaGlobe3D';
-import { NetlifyDeployModal } from './components/NetlifyDeployModal';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('pt');
@@ -67,7 +66,6 @@ export default function App() {
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [isPrintReportOpen, setIsPrintReportOpen] = useState(false);
   const [isGlobalModalOpen, setIsGlobalModalOpen] = useState(false);
-  const [isNetlifyModalOpen, setIsNetlifyModalOpen] = useState(false);
 
   // Live NASA API synchronization state (Continuous 3-second stream)
   const [liveSyncInfo, setLiveSyncInfo] = useState<{
@@ -223,7 +221,6 @@ export default function App() {
         onOpenAdvisor={() => setIsAdvisorOpen(true)}
         onOpenPrintReport={() => setIsPrintReportOpen(true)}
         onOpenGlobalExplorer={() => setIsGlobalModalOpen(true)}
-        onOpenNetlifyDeploy={() => setIsNetlifyModalOpen(true)}
         onOpenGlobeTab={() => setMainView('globe')}
         activeMainView={mainView}
         onChangeMainView={setMainView}
@@ -490,25 +487,16 @@ export default function App() {
 
       {/* 5. Footer */}
       <footer className="border-t border-stone-800 bg-stone-950 py-6 text-center text-xs text-stone-500">
-        <div className="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="font-bold text-stone-300">TerraAdapt NASA</span>
             <span>·</span>
             <span>NASA Space Apps Challenge Hackathon</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] text-stone-400 hidden md:inline">
-              {isPt 
-                ? 'Dados: NASA SMAP, GPM IMERG, ECOSTRESS, MODIS, POWER, GRACE-FO'
-                : 'Datasets: NASA SMAP, GPM IMERG, ECOSTRESS, MODIS, POWER, GRACE-FO'}
-            </span>
-            <button
-              onClick={() => setIsNetlifyModalOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-teal-500/30 bg-teal-950/30 px-2.5 py-1 text-[11px] font-semibold text-teal-300 hover:bg-teal-900/50 hover:border-teal-400 transition-colors"
-            >
-              <span className="flex h-1.5 w-1.5 rounded-full bg-teal-400" />
-              <span>{isPt ? '🚀 Deploy no Netlify' : '🚀 Deploy to Netlify'}</span>
-            </button>
+          <div className="text-[11px] text-stone-400">
+            {isPt 
+              ? 'Dados: NASA SMAP, NASA GPM IMERG, NASA ECOSTRESS, NASA MODIS, NASA POWER, NASA GRACE-FO'
+              : 'Datasets: NASA SMAP, NASA GPM IMERG, NASA ECOSTRESS, NASA MODIS, NASA POWER, NASA GRACE-FO'}
           </div>
         </div>
       </footer>
@@ -562,12 +550,6 @@ export default function App() {
         onClose={() => setIsGlobalModalOpen(false)}
         currentRegion={currentRegion}
         onSelectRegion={handleSelectRegion}
-        language={language}
-      />
-
-      <NetlifyDeployModal
-        isOpen={isNetlifyModalOpen}
-        onClose={() => setIsNetlifyModalOpen(false)}
         language={language}
       />
 

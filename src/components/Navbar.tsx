@@ -9,8 +9,7 @@ import {
   ChevronDown, 
   Compass, 
   Layers,
-  Leaf,
-  CloudUpload
+  Leaf
 } from 'lucide-react';
 import { Region, Language } from '../types';
 import { REGIONS } from '../data/regions';
@@ -23,7 +22,6 @@ interface NavbarProps {
   onOpenAdvisor: () => void;
   onOpenPrintReport: () => void;
   onOpenGlobalExplorer: () => void;
-  onOpenNetlifyDeploy?: () => void;
   onOpenGlobeTab?: () => void;
   activeMainView?: 'farm' | 'globe';
   onChangeMainView?: (mode: 'farm' | 'globe') => void;
@@ -39,7 +37,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAdvisor,
   onOpenPrintReport,
   onOpenGlobalExplorer,
-  onOpenNetlifyDeploy,
   onOpenGlobeTab,
   activeMainView = 'farm',
   onChangeMainView,
@@ -157,16 +154,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Sparkles className="h-3.5 w-3.5 text-yellow-300" />
             <span>{isPt ? 'Consultor IA NASA' : 'NASA AI Advisor'}</span>
-          </button>
-
-          {/* Netlify Deploy Trigger */}
-          <button
-            onClick={onOpenNetlifyDeploy}
-            className="flex items-center gap-1.5 rounded-lg border border-teal-500/40 bg-teal-950/40 px-2.5 py-1.5 text-xs font-semibold text-teal-300 transition-all hover:bg-teal-900/60 hover:border-teal-400 hover:text-white hover:shadow-md hover:shadow-teal-950/50"
-            title={isPt ? "Transformar e publicar este site no Netlify" : "Deploy this website to Netlify"}
-          >
-            <CloudUpload className="h-3.5 w-3.5 text-teal-400 animate-pulse" />
-            <span className="hidden sm:inline font-bold">Netlify</span>
           </button>
 
           {/* Export Report */}
